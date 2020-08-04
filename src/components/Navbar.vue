@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <h1 class="title">{{ title }}</h1>
+    
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
@@ -37,15 +37,9 @@ export default {
     nav{
         text-align: center;
         font-family: 'Oswald', sans-serif;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        text-align: center;
         height: 80px;
-        display: inline-block;
-        align-items: center;
         padding-top: 20px;
-        color: white;
         font-size: 30px;
     }
     nav * {
@@ -62,6 +56,6 @@ export default {
         text-decoration: none;
     }
     nav li a:visited {
-        color: white;
+        color: #111;
     }
 </style>
