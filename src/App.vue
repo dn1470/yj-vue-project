@@ -1,45 +1,64 @@
 <template>
   <div id="app">
-   <app-header v-bind:title="title" @changeTitle="updateTitle($event)"></app-header>
-   <yj-project v-bind:babies="babies"></yj-project>
-   <app-footer v-bind:title="title"></app-footer>
+    <Navbar :title="title"></Navbar>
+    <div class="float-container">
+      <AllFriends :friends="friends" @delete="deleteFriend"/>
+      <OnlineFriends :friends="friends" />
+    </div>
   </div>
 </template>
 
 <script>
-import Header from './components/Header'
-import Footer from './components/Footer'
-import YJproject from './components/YJproject'
+import Navbar from './components/Navbar'
+import AllFriends from './components/AllFriends'
+import OnlineFriends from './components/OnlineFriends'
 
 export default {
   name: 'App',
   components: {
-    'app-header': Header,
-    'app-footer': Footer,
-    'yj-project': YJproject
+    Navbar,
+    AllFriends,
+    OnlineFriends
   },
   data(){
     return{
-       babies:[
-           {name: 'YJ', speciality: 'Boss', show: false},
-           {name: 'Hamish', speciality: 'Farting', show: false},
-           {name: 'QnQn', speciality: 'Cat punch', show: false},
-           {name: 'Heachi Girl', speciality: 'Girl Boss', show: false},
-           {name: 'Woofie', speciality: 'Barking at nothing', show: false},
-           {name: 'Chrissy', speciality: 'Cuddling', show: false}
-       ],
-       title: 'First Vue Project'
+      title: 'Harry Potter',
+      friends: [
+            { name: 'Harry', online: true},
+            { name: 'Ron', online: false},
+            { name: 'Hermione', online: true},
+            { name: 'Hagrid', online: false},
+      ]
     }
   },
   methods: {
-    updateTitle: function(updatedTitle){
-      this.title = updatedTitle
-    }
+   deleteFriend(payload){
+     console.log(payload);
+     this.friends = this.friends.filter(friend  => {
+       return friend.name !== payload.name
+     })
+   } 
   }
   
 }
 </script>
 
 <style>
+body{
+  background-image: url('https://www.oscars.org/sites/oscars/files/akzaban_2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 80px ;
+  padding: 30px;
+  height: 125vh; 
+}
 
+.float-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+  height: 75vh;
+  position: relative;
+}
 </style>
